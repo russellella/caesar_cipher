@@ -5,6 +5,8 @@ def caesar_cipher(string, shift)
         n + shift - 26
     elsif n.between?(97, 122) && ((n + shift) > 122)
         n + shift - 26
+    elsif n < 59 || n.between?(91, 96) || n > 122
+      n
     else
       n + shift
     end
