@@ -1,14 +1,14 @@
 def caesar_cipher(string, shift)
   array = string.bytes
-  p array
-  array.map! { |n| n + shift }
-  p array
-
-  array.collect! { |n| (n > 122) ? n - 26 : n }
-  p array
-  array.collect! { |n| n.chr }
-  # Need to join array together back into a string here
-  p array
+  new_array = array.map do |n| 
+    if n.between?(59, 90) && ((n + shift) > 90)
+        n + shift - 26
+    elsif n.between?(97, 122) && ((n + shift) > 122)
+        n + shift - 26
+    else
+      n + shift
+    end
+  end
+  string = new_array.map! { |n| n.chr }.join
+  p string
 end
-
-caesar_cipher("abcxyz", 5)
